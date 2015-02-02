@@ -12,7 +12,7 @@ end
 
 get '/shirts' do
 	shirts = Tnames.all()
-	shirts = Tname.where({current: true})
+	shirts = Tname.where({available: true})
 	erb :index, locals {shirts: shirts}
 end
 
