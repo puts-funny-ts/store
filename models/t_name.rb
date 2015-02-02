@@ -1,5 +1,5 @@
-require 'activerecord'
+require 'active_record'
 
-class Tname << ActiveRecord::Base
+class Tnames << ActiveRecord::Base
 	has_many: Ttypes
 end
