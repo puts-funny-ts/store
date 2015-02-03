@@ -1,3 +1,5 @@
+
+
 CREATE TABLE tnames      (id         INTEGER PRIMARY KEY,
                           name       TEXT,
                           price      INTEGER,
