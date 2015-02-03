@@ -1,0 +1,25 @@
+<% shirts.each do |shirt| %>
+		<% shirt.ttypes.each do |type| %>
+		<tr>
+			<td><%=type.id%></td>
+			<td><%=type.tname_id%></td>
+			<td><%=type.color%></td>
+			<td><%=type.size%></td>
+			<td><%=type.gender%></td>
+			<td><%=type.quantity%></td>
+			<td><button>Edit</button></td>
+		</tr>
+		<% end %>
+		<% end %>
+
+
+<% shirts.each do |shirt| %>
+		<tr id="shirt<%=shirt.id%>" class="name-row">
+			<td><%=shirt.id%></td>
+			<td><%=shirt.name%></td>
+			<td><%=shirt.price%></td>
+			<td><%=shirt.available%></td>
+			<td><button>Edit</button></td>
+			<td><button id='button<%=shirt.id%>' class='name-button'>Show Types </button></td>
+		</tr>
+		<% end %>
