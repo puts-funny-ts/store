@@ -13,10 +13,12 @@
 
 <div class = "row page-header">
    <h1 class = "col-md-4 text-center">CODE T-SHIRT SHOP</h1>
-   <a class="btn btn-default col-md-1 col-md-offset-6" href="cart.html" role="button" id="cart">CART
-   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-  </a>
-</div
+   <div class="col-md-3 col-md-offset-5">
+   <a class="btn btn-default" href="cart.html" role="button" id="cart">CART
+   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+   <a class="btn btn-default" role="button" id="login" data-toggle="modal" data-target="#loginmodal">LOGIN</a>
+ </div>
+</div>
 
 <div class = "row">
   <div class = "col-md-3" id="shirts">
@@ -47,7 +49,7 @@
     </div>
     <div class="modal-body" id="modal-body">
        <img src="http://images3.qualitylogoproducts.com/custom-tshirts/gildan-ultracotton-tshirt-white-extralarge.jpg" data-toggle="modal" data-target="#tshirtbuy" class="img-responsive center-block" alt="Responsive image" style="width:50%">
-      <p id="price">PRICE</p>
+      <p>PRICE</p>
       <form class="form-horizontal">
       <select class="form-control">
       <p>COLOR</p>
@@ -68,6 +70,35 @@
       </select>
       <button type="button" class="btn btn-primary" id="buy" href="index.html">BUY</button>
       </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class= "row">
+<div class="modal fade" id="loginmodal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><!-- the small little x that closes -->
+      <h4 class="modal-title text-center" id="myModalLabel">LOGIN</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <form action="user" method="POST">
+        <h3>CREATE A LOGIN</h3>
+       <input name = "username" placeholder="username">
+       <input name = "password" type="password" placeholder="password">
+       <input name = "confirm_password" type="password" placeholder="confirm password">
+       <button type="button" class="btn btn-primary" id="modallog">CREATE</button> 
+      </form>   
+
+      <form action="session" method="POST">
+        <h3>LOGIN</h3>
+       <input name = "username" placeholder="username">
+       <input name = "password" type="password" placeholder="password">
+       <button type="button" class="btn btn-primary" id="modallog">LOGIN</button>
+     </form>  
     </div>
   </div>
 </div>
