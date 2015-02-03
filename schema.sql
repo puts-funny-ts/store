@@ -1,7 +1,8 @@
 CREATE TABLE tnames      (id         INTEGER PRIMARY KEY,
                           name       TEXT,
                           price      INTEGER,
-                          image_url  TEXT
+                          image_url  TEXT,
+                          available  TEXT
                          );
 
 CREATE TABLE ttypes     (id          INTEGER PRIMARY KEY,
