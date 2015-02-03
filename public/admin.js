@@ -14,7 +14,47 @@ for (var i = 0; i < name_buttons.length; i++) {
 
 
 var addTypeToTable = function(type,tr){
+	tr.innerHTML = '';
+	var tname_id = document.createElement('td');
+	id.innerHTML = type.tname_id;
+	tr.appendChild(tname_id);
+	var name = document.createElement('td');
+	var name_i = document.createElement('input');
+	name_i.setAttribute('type','text');
+	name_i.value = shirt.name;
+	name.appendChild(name_i);
+	tr.appendChild(name);
+	var price = document.createElement('td');
+	var price_i = document.createElement('input');
+	price.setAttribute('type','text');
+	price_i.value = shirt.price;
+	price.appendChild(price_i);
+	tr.appendChild(price);
+	var avail = document.createElement('td');
+	var avail_i = document.createElement('input');
+	avail_i.setAttribute('type','text');
+	avail_i.value = shirt.available;
+	avail.appendChild(avail_i);
+	tr.appendChild(avail);
+	var update_td = document.createElement('td');
+	var update = document.createElement('button');
+	update.innerHTML = 'Update';
+	update_td.appendChild(update);
+	tr.appendChild(update_td);
+	update.addEventListener('click', function(){
+		getUpdate(tr,id,name_i,price_i,avail_i);
+	});
+};
 
+var getStyles = function(shirt){
+	var xhr = new XMLHttpRequest();
+	xhr.open('get', 'http://localhost:4567/type/' + shirt.id);
+	xhr.addEventListener('load', function(){
+		var styles = JSON.parse(xhr.responseText);
+		setStyleToTr(style, tr);
+		console.log(styles);
+	});;
+	xhr.send();
 };
 
 var getUpdate = function(tr, idtd, name, price, avail){
@@ -67,16 +107,7 @@ var editPage = function(shirt, tr){
 	});
 };
 
-var getStyles = function(shirt){
-	var xhr = new XMLHttpRequest();
-	xhr.open('get', 'http://localhost:4567/type/' + shirt.id);
-	xhr.addEventListener('load', function(){
-		var styles = JSON.parse(xhr.responseText);
-		// setStyleToTr(style, tr);
-		console.log(styles);
-	});;
-	xhr.send();
-};
+
 
 
 var setShirtToTr = function(shirt, tr){

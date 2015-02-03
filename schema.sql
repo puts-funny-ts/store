@@ -2,7 +2,11 @@ CREATE TABLE tnames      (id         INTEGER PRIMARY KEY,
                           name       TEXT,
                           price      INTEGER,
                           image_url  TEXT,
+<<<<<<< HEAD
                           available  TEXT
+=======
+                          available  BOOLEAN
+>>>>>>> 6581be56523900073d20e1a7255d9ba7478c0294
                          );
 
 CREATE TABLE ttypes     (id          INTEGER PRIMARY KEY,
