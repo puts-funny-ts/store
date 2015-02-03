@@ -26,22 +26,25 @@
 		<div class= "row">
 			<% types.each do |type| %>
 			<div class="modal fade" id="tshirtbuy-<%=type.tname_id %>">
+			<% shirts.each do |shirt| %>
+			<% if type.tname_id == shirt.id %>
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><!-- the small little x that closes -->
-							<% shirts.each do |shirt| %>
+
 							<h4 class="modal-title text-center" id="myModalLabel">
-								<% if type.tname_id == shirt.id %>
+
 								<%= shirt.name %>
-								<% end %>
+
 							</h4>
-							<% end %>
+
 						</div>
 						<div class="modal-body" id="modal-body">
-							<img src="http://images3.qualitylogoproducts.com/custom-tshirts/gildan-ultracotton-tshirt-white-extralarge.jpg" data-toggle="modal" data-target="#tshirtbuy" class="img-responsive center-block" alt="Responsive image" style="width:50%">
-							<p id="price">PRICE</p>
-
+							<img src=<%=shirt.image_url %> data-toggle="modal" data-target="#tshirtbuy" class="img-responsive center-block" alt="Responsive image" style="width:50%">
+							<p id="price">$<%=shirt.price%></p>
+							<% end %>
+							<% end %>
 							<form class="form-horizontal">
 								<select class="form-control">
 									<p>COLOR</p>
