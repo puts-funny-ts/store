@@ -1,10 +1,14 @@
-require 'pry'
 require 'active_record'
 require_relative './models/connection'
 require_relative './models/buyers'
 require_relative './models/purchases'
 require_relative './models/t_name'
 require_relative './models/t_type'
+
+
+
+
+
 
 love = Tname.create({
   name: "Love",
@@ -33,55 +37,78 @@ dino = Tname.create({
       available: TRUE
       })
 
-color= ["crimson", "blue steel", "turquoise"]
-Ttype.create({
-   color: "crimson",
-   gender: "M",
-   size: "MD",
-   tname_id: love.id,
-   quantity: 10
-})
+tname_ids = [love.id, lightbulb.id, dino.id, chocolate.id]
+genders = ["M", "F"]
+colors = ["Crimson", "Blue Steel", "Cerulean", "Viridian"]
+sizes = ["SM","MD", "LG"]
 
-Ttype.create({
-  color: "crimson",
-  gender: "M",
-  size: "SM",
-  tname_id: love.id,
-  quantity: 10
-  })
-Ttype.create({
-    color: "crimson",
-    gender: "M",
-    size: "LG",
-    tname_id: love.id,
-    quantity: 10
-    })
-Ttype.create({
-      color: "crimson",
-      gender: "F",
-      size: "MD",
-      tname_id: love.id,
-      quantity: 10
-      })
 
-Ttype.create({
-        color: "crimson",
-        gender: "F",
-        size: "SM",
-        tname_id: love.id,
-        quantity: 10
-        })
+genders.each do |gender|
+  colors.each do |color|
+    sizes.each do |size|
+      tname_ids.each do |tname_id|
         Ttype.create({
-          color: "crimson",
-          gender: "F",
-          size: "LG",
-          tname_id: love.id,
-          quantity: 10
-          })
-          Ttype.create({
-            color: "Blue Steel",
-            gender: "M",
-            size: "MD",
-            tname_id: love.id,
-            quantity: 10
-            })
+          gender: gender,
+          color: color,
+          size: size,
+          tname_id: tname_id
+        })
+      end
+    end
+  end
+end
+
+
+
+# color= ["crimson", "blue steel", "turquoise"]
+# Ttype.create({
+#    color: "crimson",
+#    gender: "M",
+#    size: "MD",
+#    tname_id: love.id,
+#    quantity: 10
+# })
+
+# Ttype.create({
+#   color: "crimson",
+#   gender: "M",
+#   size: "SM",
+#   tname_id: love.id,
+#   quantity: 10
+#   })
+# Ttype.create({
+#     color: "crimson",
+#     gender: "M",
+#     size: "LG",
+#     tname_id: love.id,
+#     quantity: 10
+#     })
+# Ttype.create({
+#       color: "crimson",
+#       gender: "F",
+#       size: "MD",
+#       tname_id: love.id,
+#       quantity: 10
+#       })
+
+# Ttype.create({
+#         color: "crimson",
+#         gender: "F",
+#         size: "SM",
+#         tname_id: love.id,
+#         quantity: 10
+#         })
+#         Ttype.create({
+#           color: "crimson",
+#           gender: "F",
+#           size: "LG",
+#           tname_id: love.id,
+#           quantity: 10
+#           })
+#           Ttype.create({
+#             color: "Blue Steel",
+#             gender: "M",
+#             size: "MD",
+#             tname_id: love.id,
+#             quantity: 10
+#             })
