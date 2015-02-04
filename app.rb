@@ -70,14 +70,12 @@ put '/shirt/:id' do
 end
 
 post '/shirt' do
-	shirt = {
-		name: params["name"],
-		price: params["price"].to_i,
-		image_url: params["image_url"],
-		available: true
-	}
-	Tname.create(shirt)
-	redirect '/' 
+	request.body.rewind
+	new_shirt = JSON.parse request.body.read
+	Tname.create(new_shirt)
+	shirt = Tname.last
+	puts shirt
+	shirt.to_json
 end
 
 #CRUD for ttypes table
@@ -94,15 +92,11 @@ get '/type/:id' do
 end
 
 post '/type' do
-	type = {
-		color: params["color"],
-		gender: params["gender"],
-		size: params["size"],
-		tname_id: params["id"],
-		quantity: params["quantity"]
-	}
-	Ttype.create(type)
-	redirect('/')
+	request.body.rewind
+	new_type = JSON.parse request.body.read
+	Ttype.create(new_type)
+	type = Ttype.last
+	type.to_json
 end
 
 put '/type/:id' do
@@ -160,7 +154,7 @@ end
 # CRUD for purchases
 
 post '/purchase' do
-	
+
 	purchase = {
 		ttypes_id: item_id,
 		buyer_id: buyer_id,

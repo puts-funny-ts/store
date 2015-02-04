@@ -4,25 +4,128 @@ var styleTrs = [];
 var addStyle = document.querySelector('#addStyle');
 var addItem = document.querySelector('#addItem');
 
-
+var currentId;
 
 addStyle.addEventListener('click', function(){
-
+	var tr = document.createElement('tr');
+	// var table = document.
+	createStyle(tr);
+	var table = document.getElementById('style-tbody');
+	table.appendChild(tr);
+	styleTrs.push(tr);
 });
+
+var createStyle = function(tr){
+	tr.innerHTML = '';
+	var id = document.createElement('td');
+	tr.appendChild(id);
+	var tname_id = document.createElement('td');
+	tname_id.innerHTML = currentId;
+	tr.appendChild(tname_id);
+	var color = document.createElement('td');
+	var color_i = document.createElement('input');
+	color_i.setAttribute('type','text');
+	color.appendChild(color_i);
+	tr.appendChild(color);
+	var size = document.createElement('td');
+	var size_i = document.createElement('input');
+	size_i.setAttribute('type','text');
+	size.appendChild(size_i);
+	tr.appendChild(size);
+	var gender = document.createElement('td');
+	var gender_i = document.createElement('input');
+	gender_i.setAttribute('type','text');
+	gender.appendChild(gender_i);
+	tr.appendChild(gender);
+	var quantity = document.createElement('td');
+	var quantity_i = document.createElement('input');
+	quantity_i.setAttribute('type','text');
+	quantity.appendChild(quantity_i);
+	tr.appendChild(quantity);
+	var make_td = document.createElement('td');
+	var make = document.createElement('button');
+	make.innerHTML = 'Make';
+	make_td.appendChild(make);
+	tr.appendChild(make_td);
+	make.addEventListener('click', function(){
+		makeStyle(tr,tname_id.innerHTML,color_i,size_i,gender_i, quantity_i);
+	});
+}
+
+var makeStyle = function(tr,id, color, size, gender, quantity){
+	var obj = {
+		tname_id: id,
+		color: color.value,
+		size: size.value,
+		gender: gender.value,
+		quantity: quantity.value
+	}
+	var xhr = new XMLHttpRequest();
+	xhr.open('post', 'http://localhost:4567/type');
+	xhr.addEventListener('load', function(){
+		var style = JSON.parse(xhr.responseText);
+		setStyleToTr(style, tr);
+	});
+	xhr.send(JSON.stringify(obj));
+};
 
 addItem.addEventListener('click', function(){
-
+	var tr = document.createElement('tr');
+	createShirt(tr);
+	var table = document.getElementById('name-tbody');
+	// var table = document.getElementById('name-table');
+	table.appendChild(tr);
 });
 
-// for (var i = 0; i < name_buttons.length; i++) {
-// 	var button = name_buttons[i];
-// 	console.log(button);
-// 	button.addEventListener('click', function(){
-// 		console.log(button);
-// 		var id = button.id.substring(6);
-// 		console.log(id);
-// 	});
-// }
+var createShirt = function(tr){
+	tr.innerHTML = '';
+	var id = document.createElement('td');
+	tr.appendChild(id);
+	var name = document.createElement('td');
+	var name_i = document.createElement('input');
+	name_i.setAttribute('type','text');
+	name.appendChild(name_i);
+	tr.appendChild(name);
+	var price = document.createElement('td');
+	var price_i = document.createElement('input');
+	price.setAttribute('type','text');
+	price.appendChild(price_i);
+	tr.appendChild(price);
+	var avail = document.createElement('td');
+	var avail_i = document.createElement('input');
+	avail_i.setAttribute('type','text');
+	avail.appendChild(avail_i);
+	tr.appendChild(avail);
+	var img_url = document.createElement('td');
+	var img_url_i = document.createElement('input');
+	img_url_i.setAttribute('type','text');
+	img_url.appendChild(img_url_i);
+	tr.appendChild(img_url);
+	var make_td = document.createElement('td');
+	var make = document.createElement('button');
+	make.innerHTML = 'Make';
+	make_td.appendChild(make);
+	tr.appendChild(make_td);
+	make.addEventListener('click', function(){
+		makeItem(tr,name_i,price_i,avail_i, img_url_i);
+	});
+};
+
+var makeItem = function(tr, name, price, avail, img_url){
+	var obj = {
+		name: name.value,
+		price: price.value,
+		available: avail.value,
+		image_url: img_url.value
+	}
+	var xhr = new XMLHttpRequest();
+	xhr.open('post', 'http://localhost:4567/shirt');
+	xhr.addEventListener('load', function(){
+		var style = JSON.parse(xhr.responseText);
+		setShirtToTr(style, tr);
+	});
+	xhr.send(JSON.stringify(obj));
+};
 
 var editStyle = function(style, tr){
 	tr.innerHTML = '';
@@ -132,6 +235,8 @@ var getStyles = function(shirt){
 
 
 var addStyleToTable = function(style){
+	var button = document.querySelector('#addStyle')
+	button.style.display = 'block';
 	var tr = document.createElement('tr');
 	setStyleToTr(style, tr);
 	var table = document.getElementById('style-tbody');
@@ -217,6 +322,7 @@ var setShirtToTr = function(shirt, tr){
 	show = document.createElement('button');
 	show.innerHTML = 'Show Styles';
 	show.addEventListener('click', function(){
+		currentId = shirt.id;
 		getStyles(shirt);
 	});
 	show_td = document.createElement('td');
