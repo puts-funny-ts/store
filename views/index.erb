@@ -2,41 +2,87 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
 </head>
 <body>
-	
-	<% shirts.each do |shirt| %>
-		<p> <%=shirt.name%> price: <%=shirt.price%> </p>
-		<ul>
-		<% shirt.ttypes.each do |type| %>
-			<li> size: <%=type.size%> </li>
-			<li> gender: <%=type.gender%> </li>
-		<% end %>
-		</ul>
-	<% end %>
+	<div class = "container-fluid">
 
-	<form method="post" action="/shirt">
-		<input type='text' name='name'>
-		<input type='text' name='image_url'>
-		<input type='text' name='price'>
-		<button> Add </button>
-	</form>
+		<div class = "row page-header">
+			<h1 class = "col-md-4 text-center">CODE T-SHIRT SHOP</h1>
+			<a class="btn btn-default col-md-1 col-md-offset-6" href="cart.html" role="button" id="cart">CART
+				<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+			</a>
+		</div>
+		<div class = "row">
+			<% shirts.each do |shirt| %>
+			<div class = "col-md-3" id="shirts">
+				<img data-toggle="modal" data-target="#tshirtbuy-<%=shirt.id %>" class="img-responsive" alt="Responsive image" src=<%= shirt.image_url %>>
+			</div>
+			<% end %>
+		</div>
+		<div class= "row">
+			<% types.each do |type| %>
+			<div class="modal fade" id="tshirtbuy-<%=type.tname_id %>">
+				<% shirts.each do |shirt| %>
+				<% if type.tname_id == shirt.id %>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><!-- the small little x that closes -->
+							<h4 class="modal-title text-center" id="myModalLabel">
+								<%= shirt.name %>
+							</h4>
+						</div>
+						<div class="modal-body" id="modal-body">
+							<img src=<%=shirt.image_url %> data-toggle="modal" data-target="#tshirtbuy" class="img-responsive center-block" alt="Responsive image" style="width:50%">
+							<p id="price">$<%=shirt.price%></p>
+							<form action="/purchase" method="POST" class="form-horizontal">
+								<select class="form-control" name="color">
+									<p>COLOR</p>
+									<option>Select Color<option>
+									<% colors.each do |color| %>
+									<% if type.tname_id == shirt.id %>
+									<option value="<%=color%>"><%=color%></option>
+									<% end %>
+									<% end %>
+								</select>
+								<select class="form-control" id="drops" name="size">
+									<p>SIZE</p>
+									<option>Select Size<option>
+									<% sizes.each do |size| %>
+									<% if type.tname_id == shirt.id %>
+									<option value="<%=size%>"><%=size%></option>
+									<% end %>
+									<% end %>
+								</select>
+								<select class="form-control" id="drops" name="gender">
+									<p>GENDER</p>
+									<option>Select Gender<option>
+									<% genders.each do |gender| %>
+									<% if type.tname_id == shirt.id %>
+									<option value="<%=gender%>"><%=gender%></option>
+									<% end %>
+									<% end %>
+								</select>
+								<button class="btn btn-primary" id="buy">BUY</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+			<% end %>
+			<% end %>
+		</div>
+	</div> <!-- closes container -->
 
-	<form method="post" action="/shirt/1">
-		<input type="hidden" name="_method" value="put">
-		<input type='text' name='name'>
-		<input type='text' name='image_url'>
-		<input type='text' name='price'>
-		<button> Add </button>
-	</form>
-	
-	<form method='post' action='/type'>
-		<input type='text' name='size' placeholder='size'>
-		<input type='text' name='gender' placeholder='gender'>
-		<input type='text' name='color' placeholder='color'>
-		<input type='text' name='id' placeholder='id'>
-		<button>Add</button>
-	</form>
+
+	<!-- Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

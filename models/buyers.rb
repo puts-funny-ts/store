@@ -1,6 +1,5 @@
 require 'active_record'
 
-class Buyer < ActiveRecord::Base
-	has_many :purchases
+class Buyers <ActiveRecord::Base
+  has_many :purchases
 end
-
