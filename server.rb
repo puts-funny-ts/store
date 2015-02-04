@@ -31,6 +31,36 @@ get '/shirt/:id' do
 
 end
 
+# post '/purchase' do
+# 	purchase = {
+# 		ttypes_id: item_id,
+# 		buyer_id: buyer_id,
+# 		quantity: quantity
+# 	}
+# 	Purchase.create(purchase)
+# end
+
+post '/purchase' do
+
+	type = Ttype.find_by({tname_id: params["tname"],
+												 color: params["color"],
+												 size: params["size"],
+												 gender: params["gender"]})
+
+	shirt = Tname.find_by({id: params["tname"]})
+	image = shirt.image_url
+	cart = {
+		color: params["color"],
+		size: params["size"],
+		gender: params["gender"],
+		tname: params["tname"]
+	}
+	erb(:cart, {locals: {cart: cart, type: type, shirt: shirt }})
+
+end
+
+
+
 get '/add_to_cart' do
 
 end
