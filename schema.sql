@@ -17,7 +17,7 @@ CREATE TABLE ttypes     (id          INTEGER PRIMARY KEY,
 
 CREATE TABLE buyers    (id           INTEGER PRIMARY KEY,
                         name         TEXT,
-                        email        TEXT
+                        password     TEXT
                         );
 
 CREATE TABLE purchases (id           INTEGER PRIMARY KEY,

@@ -118,11 +118,18 @@ get '/user/:id' do
 end
 
 post '/user' do
-	user = {
-		name: params["name"],
-		email: params["email"]
-	}
-	Buyer.create(user);
+	username = params['username']
+	password = params['password']
+	conf_password = params['confirm_password']
+	if(pasword == conf_password)
+		user = {
+		name: params[""],
+		password: params["password"]
+		}
+		Buyer.create(user);
+	end
+	redirect '/'
+	
 end
 
 delete '/user/:id' do
@@ -144,6 +151,7 @@ end
 # CRUD for purchases
 
 post '/purchase' do
+
 	purchase = {
 		ttypes_id: item_id,
 		buyer_id: buyer_id,
