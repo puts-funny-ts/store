@@ -13,8 +13,18 @@ end
 
 # gets the index page
 get '/' do
+	shirts = Tname.all()
 	shirts = Tname.where({available: true})
-	erb :index, locals: {shirts: shirts}
+	types =  Ttype.all()
+	colors = Ttype.uniq.pluck(:color)
+	sizes = Ttype.uniq.pluck(:size)
+	genders = Ttype.uniq.pluck(:gender)
+
+	erb(:index, { locals: { shirts: shirts,
+													types: types,
+													colors: colors,
+													sizes: sizes,
+													genders: genders}})
 end
 
 # gets the admin page
@@ -106,7 +116,7 @@ end
 
 #  CRUD for user
 
-get 'users' do
+get '/users' do
 	buyers = Buyer.all()
 	buyers.to_json
 end
@@ -121,15 +131,14 @@ post '/user' do
 	username = params['username']
 	password = params['password']
 	conf_password = params['confirm_password']
-	if(pasword == conf_password)
+	if(password == conf_password)
 		user = {
-		name: params[""],
-		password: params["password"]
+		name: username,
+		email: password
 		}
 		Buyer.create(user);
 	end
 	redirect '/'
-	
 end
 
 delete '/user/:id' do
@@ -151,7 +160,7 @@ end
 # CRUD for purchases
 
 post '/purchase' do
-
+	
 	purchase = {
 		ttypes_id: item_id,
 		buyer_id: buyer_id,

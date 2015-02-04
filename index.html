@@ -88,12 +88,12 @@
       <h4 class="modal-title text-center" id="myModalLabel">LOGIN</h4>
     </div>
     <div class="modal-body" id="modal-body">
-      <form action="user" method="POST">
+      <form action="http://localhost:4567/user" method="POST">
         <h3>CREATE A LOGIN</h3>
        <input name = "username" placeholder="username">
        <input name = "password" type="password" placeholder="password">
        <input name = "confirm_password" type="password" placeholder="confirm password">
-       <button type="button" class="btn btn-primary" id="modallog">CREATE</button> 
+       <button class="btn btn-primary" id="modallog">CREATE</button> 
       </form>   
 
       <form action="session" method="POST">
