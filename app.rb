@@ -88,21 +88,20 @@ post '/type' do
 		color: params["color"],
 		gender: params["gender"],
 		size: params["size"],
-		tname_id: params["id"]
+		tname_id: params["id"],
+		quantity: params["quantity"]
 	}
 	Ttype.create(type)
 	redirect('/')
 end
 
 put '/type/:id' do
+	request.body.rewind
+	updated = JSON.parse request.body.read
 	id = params[:id]
-	updated = {
-		color: params["color"],
-		size: params["size"],
-		gender: params["gender"],
-		quantity: params["gender"]
-	}
-	Ttype.update(updated)
+	Ttype.update(id, updated)
+	type = Ttype.find_by({id: id})
+	type.to_json
 end
 
 #  CRUD for user
