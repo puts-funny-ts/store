@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class = "container-fluid">
+
+<div class = "row page-header">
+   <a href="index.html"><h1 class = "col-md-4 text-center">CODE T-SHIRT SHOP</h1></a>
+</div>
+
+<div class= "row">
+   <div class="shirt col-md-3 dal img-responsive center-block" alt="Responsive image" style="width:50%">
+   <img src=<%=shirt.image_url%>>
+  </div>
+  <div class="col-md-3">
+     <form class="form-horizontal" id="item">
+      <h4>T-SHIRT NAME</h4>
+      <p>PRICE</p>
+      <select class="form-control" id="item">
+      <p>COLOR</p>
+      <option><%=cart[:color]%></option>
+      <option>Green</option>
+      <option>Black</option>
+      </select>
+      <select class="form-control" id="item">
+      <p>SIZE</p>
+      <option><%=cart[:size]%></option>
+      <option>Medium</option>
+      <option>Large</option>
+      </select>
+      <select class="form-control" id="item">
+      <p>GENDER</p>
+      <option><%=cart[:gender]%></option>
+      <option>Male</option>
+      </select>
+      <select class="form-control" id="item">
+      <p>QUANTITY</p>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <input><%=cart[:tname]%></input>
+      </select>
+      <button type="button" class="btn btn-primary" id="butt">BUY</button>
+</div>
+</div>
+
+
+</div>
+
+</body>
+</html>
