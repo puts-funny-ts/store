@@ -1,5 +1,5 @@
 require 'active_record'
 
-class Buyers <ActiveRecord::Base
+class Buyer <ActiveRecord::Base
   has_many :purchases
 end
